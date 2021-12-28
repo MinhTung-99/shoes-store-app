@@ -12,4 +12,14 @@
     <string name="already_have_an_account">Already have an account?</string>
     <string name="all_categories">All Categories</string>
     <string name="chicago_il_60611_usa">Chicago, IL 60611, USA</string>
+    <string name="full_name_user">Họ và tên</string>
+    <string name="email">Email</string>
+    <string name="password_regis">Mật khẩu</string>
+    <string name="address">Địa chỉ</string>
+    <string name="phone_number">Số điện thoại</string>
+    <string name="regis">Đăng ký</string>
+    <string-array name="genders">
+        <item>Nam</item>
+        <item>Nữ</item>
+    </string-array>
 </resources>
