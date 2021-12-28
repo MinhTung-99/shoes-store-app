@@ -31,4 +31,15 @@ public class NavigatorImpl implements Navigator {
     public void pop() {
 
     }
+
+    @Override
+    public void replace(Fragment fragment) {
+        activity.getSupportFragmentManager()
+                .beginTransaction()
+                .replace(containerResId, fragment, "tag")
+                .addToBackStack(null)
+                .commit();
+    }
+
+
 }

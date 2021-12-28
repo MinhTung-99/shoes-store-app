@@ -18,6 +18,8 @@
     <string name="address">Địa chỉ</string>
     <string name="phone_number">Số điện thoại</string>
     <string name="regis">Đăng ký</string>
+    <string name="person">person</string>
+    <string name="home">home</string>
     <string-array name="genders">
         <item>Nam</item>
         <item>Nữ</item>

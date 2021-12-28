@@ -11,4 +11,6 @@ public interface Navigator {
     void push(Fragment fragment);
 
     void pop();
+
+    void replace(Fragment fragment);
 }
