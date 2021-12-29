@@ -11,6 +11,7 @@ import androidx.annotation.Nullable;
 
 import com.shoes_store_app.BaseFragment;
 import com.shoes_store_app.databinding.FragmentLoginBinding;
+import com.shoes_store_app.view.activity.AdminActivity;
 import com.shoes_store_app.view.activity.AuthenticationActivity;
 import com.shoes_store_app.view.activity.MainActivity;
 
@@ -34,7 +35,7 @@ public class LoginFragment extends BaseFragment {
         binding.txtSignUp.setOnClickListener(v -> ((AuthenticationActivity) requireActivity()).getNavigator().push(new RegisFragment()));
 
         binding.btnSignUp.setOnClickListener(v -> {
-            Intent intent = new Intent(getActivity(), MainActivity.class);
+            Intent intent = new Intent(getActivity(), AdminActivity.class);
             startActivity(intent);
             requireActivity().finish();
         });

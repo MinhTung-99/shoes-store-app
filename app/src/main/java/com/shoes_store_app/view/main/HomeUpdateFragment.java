@@ -9,20 +9,14 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 import com.shoes_store_app.BaseFragment;
-import com.shoes_store_app.databinding.FragmentProfileBinding;
-import com.shoes_store_app.view.activity.MainActivity;
+import com.shoes_store_app.databinding.FragmentHomeUpdateBinding;
 
-public class ProfileFragment extends BaseFragment {
-
-    private FragmentProfileBinding binding;
+public class HomeUpdateFragment extends BaseFragment {
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        binding = FragmentProfileBinding.inflate(inflater, container, false);
-
-        binding.imgUpdate.setOnClickListener(v -> ((MainActivity) getActivity()).getNavigator().replace(new ProfileUpdateFragment()));
-
+        FragmentHomeUpdateBinding binding = FragmentHomeUpdateBinding.inflate(inflater, container, false);
         return binding.getRoot();
     }
 

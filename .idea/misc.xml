@@ -1,5 +1,28 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="DesignSurface">
+    <option name="filePathToZoomLevelMap">
+      <map>
+        <entry key="..\:/MyGit/shoes-store-app/app/src/main/res/layout/activity_admin.xml" value="0.24003623188405798" />
+        <entry key="..\:/MyGit/shoes-store-app/app/src/main/res/layout/activity_authentication.xml" value="0.228125" />
+        <entry key="..\:/MyGit/shoes-store-app/app/src/main/res/layout/activity_detail.xml" value="0.24003623188405798" />
+        <entry key="..\:/MyGit/shoes-store-app/app/src/main/res/layout/activity_main.xml" value="0.2421875" />
+        <entry key="..\:/MyGit/shoes-store-app/app/src/main/res/layout/fragent_regis.xml" value="0.2421875" />
+        <entry key="..\:/MyGit/shoes-store-app/app/src/main/res/layout/fragment_home.xml" value="0.2265625" />
+        <entry key="..\:/MyGit/shoes-store-app/app/src/main/res/layout/fragment_home_all.xml" value="0.24003623188405798" />
+        <entry key="..\:/MyGit/shoes-store-app/app/src/main/res/layout/fragment_home_update.xml" value="0.24003623188405798" />
+        <entry key="..\:/MyGit/shoes-store-app/app/src/main/res/layout/fragment_login.xml" value="0.2421875" />
+        <entry key="..\:/MyGit/shoes-store-app/app/src/main/res/layout/fragment_profile.xml" value="0.2421875" />
+        <entry key="..\:/MyGit/shoes-store-app/app/src/main/res/layout/fragment_profile_update.xml" value="0.24003623188405798" />
+        <entry key="..\:/MyGit/shoes-store-app/app/src/main/res/layout/fragment_regis.xml" value="0.16799999999999998" />
+        <entry key="..\:/MyGit/shoes-store-app/app/src/main/res/layout/item_product.xml" value="0.2421875" />
+        <entry key="..\:/MyGit/shoes-store-app/app/src/main/res/layout/item_shoes.xml" value="0.264" />
+        <entry key="..\:/MyGit/shoes-store-app/app/src/main/res/layout/item_type.xml" value="0.2265625" />
+        <entry key="..\:/MyGit/shoes-store-app/app/src/main/res/layout/item_user.xml" value="0.24003623188405798" />
+        <entry key="..\:/MyGit/shoes-store-app/app/src/main/res/menu/menu.xml" value="0.17135416666666667" />
+      </map>
+    </option>
+  </component>
   <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="Android Studio default JDK" project-jdk-type="JavaSDK">
     <output url="file://$PROJECT_DIR$/build/classes" />
   </component>
