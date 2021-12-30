@@ -14,6 +14,7 @@ import com.shoes_store_app.BaseFragment;
 import com.shoes_store_app.R;
 import com.shoes_store_app.databinding.FragmentProfileBinding;
 import com.shoes_store_app.databinding.FragmentProfileUpdateBinding;
+import com.shoes_store_app.network.response.UserResponse;
 
 public class ProfileUpdateFragment extends BaseFragment {
 
@@ -30,7 +31,6 @@ public class ProfileUpdateFragment extends BaseFragment {
                 android.R.layout.simple_spinner_item,
                 genders);
 
-        // Layout for All ROWs of Spinner.  (Optional for ArrayAdapter).
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         binding.spinnerGender.setAdapter(adapter);
 
@@ -54,9 +54,19 @@ public class ProfileUpdateFragment extends BaseFragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+
+        callApiGetUserById(1);
     }
 
     private void onItemSelectedGenders(int position) {
         //Toast.makeText(getActivity(), genders[position], Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    protected void onSuccessGetUserById(UserResponse userResponse) {
+        binding.edtEmail.setText(userResponse.getEmail());
+        binding.edtAddress.setText(userResponse.getAddress());
+        binding.edtPhoneNumber.setText(userResponse.getPhoneNumber());
+
     }
 }

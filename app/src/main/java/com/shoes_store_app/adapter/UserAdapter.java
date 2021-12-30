@@ -9,14 +9,15 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.shoes_store_app.databinding.ItemUserBinding;
 import com.shoes_store_app.model.User;
+import com.shoes_store_app.network.response.UserResponse;
 
 import java.util.List;
 
 public class UserAdapter extends RecyclerView.Adapter<UserAdapter.UserViewHolder> {
 
-    private List<User> users;
+    private List<UserResponse> users;
 
-    public UserAdapter(List<User> users) {
+    public UserAdapter(List<UserResponse> users) {
         this.users = users;
     }
 
@@ -36,6 +37,11 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.UserViewHolder
     @Override
     public int getItemCount() {
         return users.size();
+    }
+
+    public void update (List<UserResponse> users) {
+        this.users = users;
+        notifyDataSetChanged();
     }
 
     static class UserViewHolder extends RecyclerView.ViewHolder {

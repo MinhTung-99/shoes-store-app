@@ -13,6 +13,7 @@ import com.shoes_store_app.adapter.UserAdapter;
 import com.shoes_store_app.databinding.FragmentProfileAllBinding;
 import com.shoes_store_app.databinding.FragmentProfileBinding;
 import com.shoes_store_app.model.User;
+import com.shoes_store_app.network.response.UserResponse;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -20,7 +21,7 @@ import java.util.List;
 public class ProfileAllFragment extends BaseFragment {
 
     private FragmentProfileAllBinding binding;
-    private List<User> users;
+    private List<UserResponse> users;
     private UserAdapter userAdapter;
 
     @Nullable
@@ -35,9 +36,14 @@ public class ProfileAllFragment extends BaseFragment {
         super.onViewCreated(view, savedInstanceState);
 
         users = new ArrayList<>();
-        users.add(new User("ABC", "acb@gmail.com"));
-        users.add(new User("TYU", "tyu@gmail.com"));
         userAdapter = new UserAdapter(users);
         binding.rvUser.setAdapter(userAdapter);
+
+        callApiGetUser();
+    }
+
+    @Override
+    protected void onSuccessGetUser(List<UserResponse> userResponses) {
+        userAdapter.update(userResponses);
     }
 }

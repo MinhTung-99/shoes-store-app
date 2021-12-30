@@ -1,15 +1,12 @@
 package com.shoes_store_app.view.activity;
 
 import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
 
 import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.MenuItem;
 import android.widget.Toast;
 
-import com.google.android.material.navigation.NavigationBarView;
 import com.shoes_store_app.BaseActivity;
 import com.shoes_store_app.CustomProgressDialogFragment;
 import com.shoes_store_app.R;
@@ -18,8 +15,11 @@ import com.shoes_store_app.model.Navigator;
 import com.shoes_store_app.model.impl.NavigatorImpl;
 import com.shoes_store_app.network.ApiUtils;
 import com.shoes_store_app.network.response.TestResponse;
+import com.shoes_store_app.network.response.UserResponse;
 import com.shoes_store_app.view.main.HomeFragment;
 import com.shoes_store_app.view.main.ProfileFragment;
+
+import java.util.List;
 
 import io.reactivex.SingleObserver;
 import io.reactivex.android.schedulers.AndroidSchedulers;
@@ -58,28 +58,6 @@ public class MainActivity extends BaseActivity {
 
             return false;
         });
-
-        ApiUtils.getApiService()
-                .testApi()
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new SingleObserver<TestResponse>() {
-                    @Override
-                    public void onSubscribe(@NonNull Disposable d) {
-                        CustomProgressDialogFragment.show(MainActivity.this);
-                    }
-
-                    @Override
-                    public void onSuccess(@NonNull TestResponse testResponse) {
-                        CustomProgressDialogFragment.hide();
-                        Toast.makeText(getApplicationContext(), testResponse.getCount() + "==", Toast.LENGTH_SHORT).show();
-                    }
-
-                    @Override
-                    public void onError(@NonNull Throwable e) {
-                        Log.d("KMFG", e.getLocalizedMessage());
-                    }
-                });
     }
 
     @Override

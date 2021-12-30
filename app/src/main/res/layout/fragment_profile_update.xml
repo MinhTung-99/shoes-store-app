@@ -11,7 +11,7 @@
         android:id="@+id/edt_full_name"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="ABCC"
+        android:hint="full_name"
         android:layout_centerVertical="true"
         android:layout_marginStart="10dp"/>
 
@@ -19,7 +19,7 @@
         android:id="@+id/edt_address"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Hà Nội"
+        android:hint="Địa chỉ"
         android:layout_marginStart="10dp"
         android:layout_marginTop="10dp"/>
 
@@ -27,7 +27,7 @@
         android:id="@+id/edt_phone_number"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="0987654321"
+        android:hint="Số điện thoại"
         android:layout_marginStart="10dp"
         android:layout_marginTop="10dp"/>
 
@@ -35,7 +35,7 @@
         android:id="@+id/edt_email"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="abc@gmail.com"
+        android:hint="email"
         android:layout_marginStart="10dp"
         android:layout_marginTop="10dp"/>
 
