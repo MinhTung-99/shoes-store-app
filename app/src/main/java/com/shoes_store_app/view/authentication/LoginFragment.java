@@ -35,7 +35,7 @@ public class LoginFragment extends BaseFragment {
         binding.txtSignUp.setOnClickListener(v -> ((AuthenticationActivity) requireActivity()).getNavigator().push(new RegisFragment()));
 
         binding.btnSignUp.setOnClickListener(v -> {
-            Intent intent = new Intent(getActivity(), AdminActivity.class);
+            Intent intent = new Intent(getActivity(), MainActivity.class);
             startActivity(intent);
             requireActivity().finish();
         });

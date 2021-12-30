@@ -8,8 +8,17 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.shoes_store_app.databinding.ItemUserBinding;
+import com.shoes_store_app.model.User;
+
+import java.util.List;
 
 public class UserAdapter extends RecyclerView.Adapter<UserAdapter.UserViewHolder> {
+
+    private List<User> users;
+
+    public UserAdapter(List<User> users) {
+        this.users = users;
+    }
 
     @NonNull
     @Override
@@ -21,12 +30,12 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.UserViewHolder
 
     @Override
     public void onBindViewHolder(@NonNull UserViewHolder holder, int position) {
-
+        holder.binding.txtEmail.setText(users.get(position).getEmail());
     }
 
     @Override
     public int getItemCount() {
-        return 0;
+        return users.size();
     }
 
     static class UserViewHolder extends RecyclerView.ViewHolder {
