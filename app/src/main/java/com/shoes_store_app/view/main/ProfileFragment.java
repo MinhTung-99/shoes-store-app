@@ -12,6 +12,7 @@ import com.shoes_store_app.BaseFragment;
 import com.shoes_store_app.databinding.FragmentProfileBinding;
 import com.shoes_store_app.network.response.UserResponse;
 import com.shoes_store_app.view.activity.MainActivity;
+import com.shoes_store_app.view.authentication.LoginFragment;
 
 import java.util.List;
 
@@ -33,7 +34,8 @@ public class ProfileFragment extends BaseFragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        callApiGetUserById(1);
+        binding.getRoot().setVisibility(View.GONE);
+        callApiGetUserById(LoginFragment.getInstance().userId);
     }
 
     @Override
@@ -42,5 +44,7 @@ public class ProfileFragment extends BaseFragment {
         binding.txtAddress.setText(userResponse.getAddress());
         binding.txtPhoneNumber.setText(userResponse.getPhoneNumber());
         binding.txtGender.setText(userResponse.getGender());
+        binding.txtFullName.setText(userResponse.getFullName());
+        binding.getRoot().setVisibility(View.VISIBLE);
     }
 }

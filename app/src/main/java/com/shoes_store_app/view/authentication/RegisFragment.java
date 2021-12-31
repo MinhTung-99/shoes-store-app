@@ -14,11 +14,17 @@ import androidx.annotation.Nullable;
 import com.shoes_store_app.BaseFragment;
 import com.shoes_store_app.R;
 import com.shoes_store_app.databinding.FragmentRegisBinding;
+import com.shoes_store_app.model.Navigator;
+import com.shoes_store_app.network.request.UserRequest;
+import com.shoes_store_app.view.activity.AuthenticationActivity;
+
+import java.util.Objects;
 
 public class RegisFragment extends BaseFragment {
 
     private FragmentRegisBinding binding;
     private String[] genders;
+    private String gender;
 
     @Nullable
     @Override
@@ -30,7 +36,6 @@ public class RegisFragment extends BaseFragment {
                 android.R.layout.simple_spinner_item,
                 genders);
 
-        // Layout for All ROWs of Spinner.  (Optional for ArrayAdapter).
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         binding.spinnerGender.setAdapter(adapter);
 
@@ -51,11 +56,30 @@ public class RegisFragment extends BaseFragment {
     }
 
     private void onItemSelectedGenders(int position) {
-        //Toast.makeText(getActivity(), genders[position], Toast.LENGTH_SHORT).show();
+        gender = genders[position];
     }
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+
+        binding.btnRegis.setOnClickListener(v -> {
+            UserRequest userRequest = new UserRequest(
+                binding.edtUserName.getText().toString(),
+                    binding.edtPassword.getText().toString(),
+                    binding.edtFullName.getText().toString(),
+                    gender,
+                    binding.edtAddress.getText().toString(),
+                    binding.edtPhoneNumber.getText().toString(),
+                    binding.edtEmail.getText().toString(),
+                    "user", "1"
+            );
+            callApiAddUser(userRequest);
+        });
+    }
+
+    @Override
+    protected void onSuccessAddUser() {
+        ((AuthenticationActivity) requireActivity()).getNavigator().pop();
     }
 }

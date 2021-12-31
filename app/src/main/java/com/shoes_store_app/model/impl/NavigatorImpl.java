@@ -29,7 +29,7 @@ public class NavigatorImpl implements Navigator {
 
     @Override
     public void pop() {
-
+        activity.onBackPressed();
     }
 
     @Override

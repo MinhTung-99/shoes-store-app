@@ -48,4 +48,9 @@ public class AdminActivity extends BaseActivity {
             return false;
         });
     }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+    }
 }

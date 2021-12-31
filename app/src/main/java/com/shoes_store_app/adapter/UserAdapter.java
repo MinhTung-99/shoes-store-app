@@ -1,5 +1,6 @@
 package com.shoes_store_app.adapter;
 
+import android.annotation.SuppressLint;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,6 +17,11 @@ import java.util.List;
 public class UserAdapter extends RecyclerView.Adapter<UserAdapter.UserViewHolder> {
 
     private List<UserResponse> users;
+    private ItemOnClick itemOnClick;
+
+    public void setItemOnClick(ItemOnClick itemOnClick) {
+        this.itemOnClick = itemOnClick;
+    }
 
     public UserAdapter(List<UserResponse> users) {
         this.users = users;
@@ -26,6 +32,9 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.UserViewHolder
     public UserViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         ItemUserBinding binding = ItemUserBinding.inflate(LayoutInflater.from(parent.getContext()), parent, false);
         UserViewHolder viewHolder = new UserViewHolder(binding);
+        binding.imgRemove.setOnClickListener(v -> {
+            itemOnClick.onSelectedRemove(users.get(viewHolder.getAdapterPosition()).getId());
+        });
         return viewHolder;
     }
 
@@ -39,6 +48,7 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.UserViewHolder
         return users.size();
     }
 
+    @SuppressLint("NotifyDataSetChanged")
     public void update (List<UserResponse> users) {
         this.users = users;
         notifyDataSetChanged();
@@ -51,5 +61,9 @@ public class UserAdapter extends RecyclerView.Adapter<UserAdapter.UserViewHolder
 
             this.binding = itemView;
         }
+    }
+
+    public interface ItemOnClick {
+        void onSelectedRemove(int id);
     }
 }

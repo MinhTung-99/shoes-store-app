@@ -15,6 +15,7 @@ import com.shoes_store_app.R;
 import com.shoes_store_app.databinding.FragmentProfileBinding;
 import com.shoes_store_app.databinding.FragmentProfileUpdateBinding;
 import com.shoes_store_app.network.response.UserResponse;
+import com.shoes_store_app.view.authentication.LoginFragment;
 
 public class ProfileUpdateFragment extends BaseFragment {
 
@@ -55,7 +56,7 @@ public class ProfileUpdateFragment extends BaseFragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        callApiGetUserById(1);
+        callApiGetUserById(LoginFragment.getInstance().userId);
     }
 
     private void onItemSelectedGenders(int position) {
@@ -64,9 +65,15 @@ public class ProfileUpdateFragment extends BaseFragment {
 
     @Override
     protected void onSuccessGetUserById(UserResponse userResponse) {
+        binding.edtUserName.setText(userResponse.getUserName());
+        binding.edtFullName.setText(userResponse.getFullName());
         binding.edtEmail.setText(userResponse.getEmail());
         binding.edtAddress.setText(userResponse.getAddress());
         binding.edtPhoneNumber.setText(userResponse.getPhoneNumber());
-
+        if (userResponse.getGender().equals(genders[0])) {
+            binding.spinnerGender.setSelection(0);
+        } else {
+            binding.spinnerGender.setSelection(1);
+        }
     }
 }

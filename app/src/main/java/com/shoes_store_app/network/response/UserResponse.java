@@ -19,6 +19,10 @@ public class UserResponse {
     private String phoneNumber;
     @SerializedName("gender")
     private String gender;
+    @SerializedName("status")
+    private Integer status;
+    @SerializedName("userName")
+    private String userName;
 
     public Integer getId() {
         return id;
@@ -50,5 +54,13 @@ public class UserResponse {
 
     public String getGender() {
         return gender;
+    }
+
+    public Integer getStatus() {
+        return status;
+    }
+
+    public String getUserName() {
+        return userName;
     }
 }
