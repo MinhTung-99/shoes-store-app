@@ -1,7 +1,16 @@
 package com.shoes_store_app.view.authentication;
 
+import static android.content.Context.FINGERPRINT_SERVICE;
+import static android.content.Context.KEYGUARD_SERVICE;
+
+import android.Manifest;
+import android.app.KeyguardManager;
 import android.content.Intent;
+import android.content.pm.PackageManager;
+import android.hardware.fingerprint.FingerprintManager;
 import android.os.Bundle;
+import android.security.keystore.KeyGenParameterSpec;
+import android.security.keystore.KeyProperties;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -9,16 +18,32 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.core.app.ActivityCompat;
 
 import com.shoes_store_app.BaseFragment;
 import com.shoes_store_app.databinding.FragmentLoginBinding;
+import com.shoes_store_app.fingerprint.FingerprintHandle;
 import com.shoes_store_app.network.response.UserResponse;
 import com.shoes_store_app.view.activity.AdminActivity;
 import com.shoes_store_app.view.activity.AuthenticationActivity;
 import com.shoes_store_app.view.activity.MainActivity;
 
+import java.io.IOException;
+import java.security.InvalidAlgorithmParameterException;
+import java.security.InvalidKeyException;
+import java.security.KeyStore;
+import java.security.KeyStoreException;
+import java.security.NoSuchAlgorithmException;
+import java.security.NoSuchProviderException;
+import java.security.UnrecoverableKeyException;
+import java.security.cert.CertificateException;
 import java.util.List;
 import java.util.Objects;
+
+import javax.crypto.Cipher;
+import javax.crypto.KeyGenerator;
+import javax.crypto.NoSuchPaddingException;
+import javax.crypto.SecretKey;
 
 public class LoginFragment extends BaseFragment {
 
@@ -28,6 +53,10 @@ public class LoginFragment extends BaseFragment {
     public static LoginFragment getInstance() {
         return loginFragment;
     }
+
+    private KeyStore keyStore;
+    private final static String KEY_NAME = "EDMTDev";
+    private Cipher cipher;
 
     @Nullable
     @Override
@@ -45,6 +74,33 @@ public class LoginFragment extends BaseFragment {
         binding.txtSignUp.setOnClickListener(v -> ((AuthenticationActivity) requireActivity()).getNavigator().push(new RegisFragment()));
 
         binding.btnSignUp.setOnClickListener(v -> callApiGetUser());
+
+        KeyguardManager keyguardManager = (KeyguardManager) getActivity().getSystemService(KEYGUARD_SERVICE);
+        FingerprintManager fingerprintManager = (FingerprintManager) getActivity().getSystemService(FINGERPRINT_SERVICE);
+
+        if (ActivityCompat.checkSelfPermission(getActivity(), Manifest.permission.USE_FINGERPRINT) != PackageManager.PERMISSION_GRANTED) {
+            return;
+        }
+
+        if (!fingerprintManager.isHardwareDetected()) {
+            Toast.makeText(getActivity(), "not enable", Toast.LENGTH_SHORT).show();
+        } else {
+            if (!fingerprintManager.hasEnrolledFingerprints()) {
+                Toast.makeText(getActivity(), "in setting", Toast.LENGTH_SHORT).show();
+            } else {
+                if (!keyguardManager.isKeyguardSecure()) {
+                    Toast.makeText(getActivity(), "enabled setting", Toast.LENGTH_SHORT).show();
+                } else {
+                    genKey();
+
+                    if (cipherInit()) {
+                        FingerprintManager.CryptoObject cryptoObject = new FingerprintManager.CryptoObject(cipher);
+                        FingerprintHandle handler = new FingerprintHandle(getActivity());
+                        handler.startAuthentication(fingerprintManager, cryptoObject);
+                    }
+                }
+            }
+        }
     }
 
     @Override
@@ -72,5 +128,59 @@ public class LoginFragment extends BaseFragment {
         if (!isLogin) {
             Toast.makeText(getContext(), "Tài khoảng hoặc mật khẩu không đúng", Toast.LENGTH_SHORT).show();
         }
+    }
+
+    private boolean cipherInit() {
+        try {
+            cipher = Cipher.getInstance(
+                    KeyProperties.KEY_ALGORITHM_AES + "/" +KeyProperties.BLOCK_MODE_CBC + "/" + KeyProperties.ENCRYPTION_PADDING_PKCS7
+            );
+            keyStore.load(null);
+            SecretKey key = (SecretKey) keyStore.getKey(KEY_NAME, null);
+            cipher.init(Cipher.ENCRYPT_MODE, key);
+            return true;
+        } catch (NoSuchAlgorithmException | NoSuchPaddingException | CertificateException | IOException | KeyStoreException | UnrecoverableKeyException | InvalidKeyException e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
+
+    private void genKey() {
+        try {
+            keyStore = KeyStore.getInstance("AndroidKeyStore");
+        } catch (KeyStoreException e) {
+            e.printStackTrace();
+        }
+        KeyGenerator keyGenerator = null;
+
+        try {
+            keyGenerator = KeyGenerator.getInstance(KeyProperties.KEY_ALGORITHM_AES, "AndroidKeyStore");
+        } catch (NoSuchAlgorithmException e) {
+            e.printStackTrace();
+        } catch (NoSuchProviderException e) {
+            e.printStackTrace();
+        }
+
+        try {
+            keyStore.load(null);
+        } catch (CertificateException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (NoSuchAlgorithmException e) {
+            e.printStackTrace();
+        }
+
+        try {
+            keyGenerator.init(new KeyGenParameterSpec.Builder(KEY_NAME,
+                    KeyProperties.PURPOSE_ENCRYPT | KeyProperties.PURPOSE_DECRYPT)
+                    .setBlockModes(KeyProperties.BLOCK_MODE_CBC)
+                    .setUserAuthenticationRequired(true)
+                    .setEncryptionPaddings(KeyProperties.ENCRYPTION_PADDING_PKCS7).build());
+        } catch (InvalidAlgorithmParameterException e) {
+            e.printStackTrace();
+        }
+
+        keyGenerator.generateKey();
     }
 }
