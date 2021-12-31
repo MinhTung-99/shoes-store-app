@@ -7,13 +7,6 @@
     android:orientation="vertical"
     android:layout_marginHorizontal="20dp">
 
-    <EditText
-        android:id="@+id/edt_user_name"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="Tên"
-        android:layout_centerVertical="true"
-        android:layout_marginStart="10dp"/>
 
     <EditText
         android:id="@+id/edt_full_name"
@@ -28,22 +21,6 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:hint="Địa chỉ"
-        android:layout_marginStart="10dp"
-        android:layout_marginTop="10dp"/>
-
-    <EditText
-        android:id="@+id/edt_phone_number"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="Số điện thoại"
-        android:layout_marginStart="10dp"
-        android:layout_marginTop="10dp"/>
-
-    <EditText
-        android:id="@+id/edt_email"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="email"
         android:layout_marginStart="10dp"
         android:layout_marginTop="10dp"/>
 

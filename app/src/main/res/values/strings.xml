@@ -23,6 +23,7 @@
     <string name="order">Đặt hàng</string>
     <string name="update">update</string>
     <string name="user_name">Tên người dùng</string>
+    <string name="remember_password">Nhớ mật khẩu</string>
     <string-array name="genders">
         <item>Nam</item>
         <item>Nữ</item>

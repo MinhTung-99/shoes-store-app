@@ -1,6 +1,9 @@
 package com.shoes_store_app;
 
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.util.Log;
+import android.widget.EditText;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -117,4 +120,24 @@ public class BaseFragment extends Fragment {
                 });
     }
     protected void onSuccessDeleteUser () {}
+
+    protected void listenEdittextChange (EditText editText) {
+        editText.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                onTextChange(s.toString(), editText);
+            }
+
+            @Override
+            public void afterTextChanged(Editable s) {
+
+            }
+        });
+    }
+    protected void onTextChange (String text, EditText editText) {}
 }

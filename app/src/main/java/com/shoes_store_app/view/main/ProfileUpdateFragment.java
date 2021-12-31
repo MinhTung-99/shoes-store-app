@@ -65,11 +65,8 @@ public class ProfileUpdateFragment extends BaseFragment {
 
     @Override
     protected void onSuccessGetUserById(UserResponse userResponse) {
-        binding.edtUserName.setText(userResponse.getUserName());
         binding.edtFullName.setText(userResponse.getFullName());
-        binding.edtEmail.setText(userResponse.getEmail());
         binding.edtAddress.setText(userResponse.getAddress());
-        binding.edtPhoneNumber.setText(userResponse.getPhoneNumber());
         if (userResponse.getGender().equals(genders[0])) {
             binding.spinnerGender.setSelection(0);
         } else {

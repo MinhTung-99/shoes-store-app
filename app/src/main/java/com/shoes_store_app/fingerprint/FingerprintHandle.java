@@ -11,13 +11,16 @@ import androidx.core.app.ActivityCompat;
 
 public class FingerprintHandle extends FingerprintManager.AuthenticationCallback {
     private Context context;
+    private FingerPrint fingerPrint;
+    private CancellationSignal cancellationSignal;
 
-    public FingerprintHandle(Context context) {
+    public FingerprintHandle(Context context, FingerPrint fingerPrint) {
         this.context = context;
+        this.fingerPrint = fingerPrint;
     }
 
     public void startAuthentication(FingerprintManager fingerprintManager, FingerprintManager.CryptoObject cryptoObject) {
-        CancellationSignal cancellationSignal = new CancellationSignal();
+        cancellationSignal = new CancellationSignal();
         if (ActivityCompat.checkSelfPermission(context, Manifest.permission.USE_FINGERPRINT) != PackageManager.PERMISSION_GRANTED) {
             return;
         }
@@ -27,12 +30,21 @@ public class FingerprintHandle extends FingerprintManager.AuthenticationCallback
     @Override
     public void onAuthenticationFailed() {
         super.onAuthenticationFailed();
-        Toast.makeText(context, "Authentication failed", Toast.LENGTH_SHORT).show();
     }
 
     @Override
     public void onAuthenticationSucceeded(FingerprintManager.AuthenticationResult result) {
         super.onAuthenticationSucceeded(result);
-        Toast.makeText(context, "Authentication Success", Toast.LENGTH_SHORT).show();
+        fingerPrint.onSuccess();
+    }
+
+    public void stopFingerAuth(){
+        if(cancellationSignal != null && !cancellationSignal.isCanceled()){
+            cancellationSignal.cancel();
+        }
+    }
+
+    public interface FingerPrint {
+        void onSuccess ();
     }
 }
