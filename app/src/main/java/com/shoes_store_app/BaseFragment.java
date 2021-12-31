@@ -11,6 +11,7 @@ import androidx.fragment.app.Fragment;
 
 import com.shoes_store_app.network.ApiUtils;
 import com.shoes_store_app.network.request.UserRequest;
+import com.shoes_store_app.network.request.UserUpdateRequest;
 import com.shoes_store_app.network.response.UserPostResponse;
 import com.shoes_store_app.network.response.UserResponse;
 import com.shoes_store_app.view.activity.MainActivity;
@@ -120,6 +121,30 @@ public class BaseFragment extends Fragment {
                 });
     }
     protected void onSuccessDeleteUser () {}
+
+    protected void callApiUpdateUser (String email, UserUpdateRequest userUpdateRequest) {
+        ApiUtils.getApiService()
+                .updateUser(email, userUpdateRequest)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new SingleObserver<UserPostResponse>() {
+                    @Override
+                    public void onSubscribe(@NonNull Disposable d) {
+                        CustomProgressDialogFragment.show(((BaseActivity) getActivity()));
+                    }
+
+                    @Override
+                    public void onSuccess(@NonNull UserPostResponse userResponse) {
+                        CustomProgressDialogFragment.hide();
+                        onSuccessUpdateUser();
+                    }
+
+                    @Override
+                    public void onError(@NonNull Throwable e) {
+                    }
+                });
+    }
+    protected void onSuccessUpdateUser () {}
 
     protected void listenEdittextChange (EditText editText) {
         editText.addTextChangedListener(new TextWatcher() {

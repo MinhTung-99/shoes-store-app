@@ -14,13 +14,21 @@ import com.shoes_store_app.BaseFragment;
 import com.shoes_store_app.R;
 import com.shoes_store_app.databinding.FragmentProfileBinding;
 import com.shoes_store_app.databinding.FragmentProfileUpdateBinding;
+import com.shoes_store_app.network.request.UserUpdateRequest;
 import com.shoes_store_app.network.response.UserResponse;
+import com.shoes_store_app.view.activity.MainActivity;
 import com.shoes_store_app.view.authentication.LoginFragment;
 
 public class ProfileUpdateFragment extends BaseFragment {
 
     private FragmentProfileUpdateBinding binding;
     private String[] genders;
+    private String gender;
+    private ProfileFragment.ProfileCallBack profileCallBack;
+
+    public ProfileUpdateFragment(ProfileFragment.ProfileCallBack profileCallBack) {
+        this.profileCallBack = profileCallBack;
+    }
 
     @Nullable
     @Override
@@ -57,10 +65,24 @@ public class ProfileUpdateFragment extends BaseFragment {
         super.onViewCreated(view, savedInstanceState);
 
         callApiGetUserById(LoginFragment.getInstance().userId);
+
+        binding.btnUpdate.setOnClickListener(v -> {
+            UserUpdateRequest userUpdateRequest = new UserUpdateRequest(
+                    LoginFragment.getInstance().password, binding.edtFullName.getText().toString(),
+                    gender, binding.edtAddress.getText().toString()
+            );
+            callApiUpdateUser(LoginFragment.getInstance().email, userUpdateRequest);
+        });
+    }
+
+    @Override
+    protected void onSuccessUpdateUser() {
+        ((MainActivity) requireActivity()).getNavigator().pop();
+        profileCallBack.callback();
     }
 
     private void onItemSelectedGenders(int position) {
-        //Toast.makeText(getActivity(), genders[position], Toast.LENGTH_SHORT).show();
+        gender = genders[position];
     }
 
     @Override

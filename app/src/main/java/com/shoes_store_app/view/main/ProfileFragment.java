@@ -25,7 +25,12 @@ public class ProfileFragment extends BaseFragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         binding = FragmentProfileBinding.inflate(inflater, container, false);
 
-        binding.imgUpdate.setOnClickListener(v -> ((MainActivity) getActivity()).getNavigator().replace(new ProfileUpdateFragment()));
+        binding.imgUpdate.setOnClickListener(v ->
+                ((MainActivity) getActivity()).getNavigator()
+                        .replace(new ProfileUpdateFragment(() -> {
+                            callApiGetUserById(LoginFragment.getInstance().userId);
+                        }))
+        );
 
         return binding.getRoot();
     }
@@ -46,5 +51,9 @@ public class ProfileFragment extends BaseFragment {
         binding.txtGender.setText(userResponse.getGender());
         binding.txtFullName.setText(userResponse.getFullName());
         binding.getRoot().setVisibility(View.VISIBLE);
+    }
+
+    public interface ProfileCallBack {
+        void callback ();
     }
 }

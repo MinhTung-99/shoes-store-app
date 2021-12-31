@@ -56,11 +56,13 @@ import javax.crypto.SecretKey;
 public class LoginFragment extends BaseFragment {
 
     private FragmentLoginBinding binding;
-    public Integer userId;
     private static LoginFragment loginFragment;
     public static LoginFragment getInstance() {
         return loginFragment;
     }
+    public Integer userId;
+    public String email;
+    public String password;
 
     private KeyStore keyStore;
     private final static String KEY_NAME = "EDMTDev";
@@ -141,6 +143,9 @@ public class LoginFragment extends BaseFragment {
 
     @Override
     protected void onSuccessGetUser(List<UserResponse> userResponse) {
+        email = binding.edtEmail.getText().toString();
+        password = binding.edtPassword.getText().toString();
+
         boolean isLogin = false;
         for (UserResponse user : userResponse) {
             if (user.getEmail().equals(binding.edtEmail.getText().toString())
