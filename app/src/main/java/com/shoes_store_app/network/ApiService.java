@@ -2,6 +2,8 @@ package com.shoes_store_app.network;
 
 import com.shoes_store_app.network.request.UserRequest;
 import com.shoes_store_app.network.request.UserUpdateRequest;
+import com.shoes_store_app.network.response.ProductItemResponse;
+import com.shoes_store_app.network.response.ProductResponse;
 import com.shoes_store_app.network.response.TestResponse;
 import com.shoes_store_app.network.response.UserPostResponse;
 import com.shoes_store_app.network.response.UserResponse;
@@ -32,4 +34,10 @@ public interface ApiService {
 
     @PUT("user/update/{email}")
     Single<UserPostResponse> updateUser (@Path(value = "email") String email, @Body UserUpdateRequest userUpdateRequest);
+
+    @GET("product")
+    Single<List<ProductResponse>> getProduct ();
+
+    @GET("item/allitem")
+    Single<List<ProductItemResponse>> getProductItem ();
 }

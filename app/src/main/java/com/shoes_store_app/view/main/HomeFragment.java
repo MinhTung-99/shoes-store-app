@@ -18,6 +18,8 @@ import com.shoes_store_app.adapter.TypeAdapter;
 import com.shoes_store_app.databinding.FragmentHomeBinding;
 import com.shoes_store_app.model.Shoes;
 import com.shoes_store_app.model.Type;
+import com.shoes_store_app.network.response.ProductItemResponse;
+import com.shoes_store_app.network.response.ProductResponse;
 import com.shoes_store_app.view.activity.AdminActivity;
 import com.shoes_store_app.view.activity.DetailActivity;
 import com.shoes_store_app.view.activity.MainActivity;
@@ -29,11 +31,11 @@ import java.util.Objects;
 public class HomeFragment extends BaseFragment {
 
     private FragmentHomeBinding binding;
-    private List<Type> types;
+    private List<ProductResponse> types;
     private TypeAdapter typeAdapter;
-    private List<Shoes> shoes;
+    private List<ProductItemResponse> shoes;
     private ShoesAdapter shoesAdapter;
-    private List<Shoes> shoesType;
+    private List<ProductItemResponse> shoesType;
 
     @Nullable
     @Override
@@ -46,18 +48,14 @@ public class HomeFragment extends BaseFragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
+        callApiGetProduct();
         types = new ArrayList<>();
-        types.add(new Type(1, "Giày thể thao"));
-        types.add(new Type(2, "Giày da"));
-        types.add(new Type(3, "Giày lười da"));
-        types.add(new Type(4, "Giày Sneaker"));
-
         typeAdapter = new TypeAdapter(types);
         typeAdapter.setItemOnClick(id -> {
             shoesType.clear();
-            for (Shoes shoes : shoes) {
-                if (shoes.getTypeId() == id) {
-                    shoesType.add(shoes);
+            for (ProductItemResponse item : shoes) {
+                if (item.getProductId() == id) {
+                    shoesType.add(item);
                 }
             }
             shoesAdapter.update(shoesType);
@@ -67,16 +65,7 @@ public class HomeFragment extends BaseFragment {
         binding.rvType.setAdapter(typeAdapter);
 
         shoes = new ArrayList<>();
-        shoes.add(new Shoes(1, "Giày thể thao", "399000 VND", "10/10/2021"));
-        shoes.add(new Shoes(2, "Giày da", "499000 VND", "10/10/2021"));
-        shoes.add(new Shoes(1, "Giày lười", "599000 VND", "10/10/2021"));
-        shoesType = new ArrayList<>();
-        for (Shoes shoes : shoes) {
-            if (shoes.getTypeId() == 1) {
-                shoesType.add(shoes);
-            }
-        }
-        shoesAdapter = new ShoesAdapter(shoesType);
+        shoesAdapter = new ShoesAdapter(shoes);
         shoesAdapter.setItemOnClick(new ShoesAdapter.ItemOnClick() {
             @Override
             public void onItemSelected() {
@@ -97,5 +86,36 @@ public class HomeFragment extends BaseFragment {
         });
         binding.rvItem.setLayoutManager(new GridLayoutManager(getActivity(), 2));
         binding.rvItem.setAdapter(shoesAdapter);
+    }
+
+    @Override
+    protected void onSuccessGetProduct(List<ProductResponse> productResponses) {
+        typeAdapter.update(productResponses);
+        types.clear();
+        types.addAll(productResponses);
+        callApiGetProductItem();
+    }
+
+    @Override
+    protected void onSuccessGetProductItem(List<ProductItemResponse> productItemResponses) {
+        for (int i = 0; i < productItemResponses.size(); i++) {
+            for (ProductResponse type: types) {
+                if (type.getProductId() == productItemResponses.get(i).getProductId()) {
+                    productItemResponses.get(i).setProductName(type.getProductName());
+                    productItemResponses.get(i).setUpdateTime(type.getUpdateTime());
+                    productItemResponses.get(i).setPrice(type.getPrice());
+                }
+            }
+        }
+
+        shoes.addAll(productItemResponses);
+        shoesType = new ArrayList<>();
+        for (ProductItemResponse item : productItemResponses) {
+            if (item.getProductId() == 1) {
+                shoesType.add(item);
+            }
+        }
+
+        shoesAdapter.update(shoesType);
     }
 }

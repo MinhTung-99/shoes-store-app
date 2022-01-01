@@ -12,6 +12,8 @@ import androidx.fragment.app.Fragment;
 import com.shoes_store_app.network.ApiUtils;
 import com.shoes_store_app.network.request.UserRequest;
 import com.shoes_store_app.network.request.UserUpdateRequest;
+import com.shoes_store_app.network.response.ProductItemResponse;
+import com.shoes_store_app.network.response.ProductResponse;
 import com.shoes_store_app.network.response.UserPostResponse;
 import com.shoes_store_app.network.response.UserResponse;
 import com.shoes_store_app.view.activity.MainActivity;
@@ -145,6 +147,54 @@ public class BaseFragment extends Fragment {
                 });
     }
     protected void onSuccessUpdateUser () {}
+
+    protected void callApiGetProduct () {
+        ApiUtils.getApiService()
+                .getProduct()
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new SingleObserver<List<ProductResponse>>() {
+                    @Override
+                    public void onSubscribe(@NonNull Disposable d) {
+                        CustomProgressDialogFragment.show(((BaseActivity) getActivity()));
+                    }
+
+                    @Override
+                    public void onSuccess(@NonNull List<ProductResponse> productResponse) {
+                        CustomProgressDialogFragment.hide();
+                        onSuccessGetProduct(productResponse);
+                    }
+
+                    @Override
+                    public void onError(@NonNull Throwable e) {
+                    }
+                });
+    }
+    protected void onSuccessGetProduct (List<ProductResponse> productResponses) {}
+
+    protected void callApiGetProductItem () {
+        ApiUtils.getApiService()
+                .getProductItem()
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new SingleObserver<List<ProductItemResponse>>() {
+                    @Override
+                    public void onSubscribe(@NonNull Disposable d) {
+                        CustomProgressDialogFragment.show(((BaseActivity) getActivity()));
+                    }
+
+                    @Override
+                    public void onSuccess(@NonNull List<ProductItemResponse> productResponse) {
+                        CustomProgressDialogFragment.hide();
+                        onSuccessGetProductItem(productResponse);
+                    }
+
+                    @Override
+                    public void onError(@NonNull Throwable e) {
+                    }
+                });
+    }
+    protected void onSuccessGetProductItem (List<ProductItemResponse> productResponses) {}
 
     protected void listenEdittextChange (EditText editText) {
         editText.addTextChangedListener(new TextWatcher() {

@@ -10,19 +10,20 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.shoes_store_app.databinding.ItemShoesBinding;
 import com.shoes_store_app.model.Shoes;
+import com.shoes_store_app.network.response.ProductItemResponse;
 
 import java.util.List;
 
 public class ShoesAdapter extends RecyclerView.Adapter<ShoesAdapter.ShoesViewHolder> {
 
-    private List<Shoes> shoes;
+    private List<ProductItemResponse> shoes;
     private ItemOnClick itemOnClick;
 
     public void setItemOnClick(ItemOnClick itemOnClick) {
         this.itemOnClick = itemOnClick;
     }
 
-    public ShoesAdapter(List<Shoes> shoes) {
+    public ShoesAdapter(List<ProductItemResponse> shoes) {
         this.shoes = shoes;
     }
 
@@ -41,9 +42,9 @@ public class ShoesAdapter extends RecyclerView.Adapter<ShoesAdapter.ShoesViewHol
 
     @Override
     public void onBindViewHolder(@NonNull ShoesViewHolder holder, int position) {
-        holder.binding.txtName.setText(shoes.get(position).getName());
-        holder.binding.txtDate.setText(shoes.get(position).getDate());
-        holder.binding.txtPrice.setText(shoes.get(position).getPrice());
+        holder.binding.txtName.setText(shoes.get(position).getProductName());
+        holder.binding.txtDate.setText(shoes.get(position).getUpdateTime());
+        holder.binding.txtPrice.setText(String.valueOf(shoes.get(position).getPrice()));
     }
 
     @Override
@@ -52,7 +53,7 @@ public class ShoesAdapter extends RecyclerView.Adapter<ShoesAdapter.ShoesViewHol
     }
 
     @SuppressLint("NotifyDataSetChanged")
-    public void update (List<Shoes> shoes) {
+    public void update (List<ProductItemResponse> shoes) {
         this.shoes = shoes;
         notifyDataSetChanged();
     }
