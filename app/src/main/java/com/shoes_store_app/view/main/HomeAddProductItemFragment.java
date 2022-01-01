@@ -11,7 +11,6 @@ import androidx.annotation.Nullable;
 import com.shoes_store_app.BaseFragment;
 import com.shoes_store_app.databinding.FragmentHomeAddProductItemBinding;
 import com.shoes_store_app.network.request.ProductAddItemRequest;
-import com.shoes_store_app.view.activity.HomeAddActivity;
 
 public class HomeAddProductItemFragment extends BaseFragment {
 

@@ -42,8 +42,14 @@ public interface ApiService {
     @GET("item/allitem")
     Single<List<ProductItemResponse>> getProductItem ();
 
+    @GET("item/id")
+    Single<ProductItemResponse> getProductItemById (@Query(value = "itemId") int itemId);
+
     @POST("product/add")
     Single<UserPostResponse> addProduct (@Body ProductAddRequest productAddRequest);
+
+    @PUT("item/update")
+    Single<UserPostResponse> updateProductItem (@Body ProductAddItemRequest productAddItemRequest);
 
     @POST("item/add")
     Single<UserPostResponse> addProductItem (@Body ProductAddItemRequest productAddItemRequest);

@@ -3,6 +3,8 @@ package com.shoes_store_app.network.request;
 import com.google.gson.annotations.SerializedName;
 
 public class ProductAddItemRequest {
+    @SerializedName("itemId")
+    private int itemId;
     @SerializedName("productName")
     private String productName;
     @SerializedName("colorName")
@@ -15,6 +17,15 @@ public class ProductAddItemRequest {
     private String sale;
 
     public ProductAddItemRequest(String productName, String colorName, String size, String numItems, String sale) {
+        this.productName = productName;
+        this.colorName = colorName;
+        this.size = size;
+        this.numItems = numItems;
+        this.sale = sale;
+    }
+
+    public ProductAddItemRequest(int itemId, String productName, String colorName, String size, String numItems, String sale) {
+        this.itemId = itemId;
         this.productName = productName;
         this.colorName = colorName;
         this.size = size;

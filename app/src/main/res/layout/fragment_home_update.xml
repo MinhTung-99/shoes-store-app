@@ -6,7 +6,7 @@
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
         android:orientation="vertical"
         android:layout_marginTop="20dp">
 
@@ -16,56 +16,49 @@
             android:layout_gravity="center"
             android:src="@drawable/ic_shoes"/>
 
+        <TextView
+            android:id="@+id/txt_product_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:hint="@string/product"
+            android:textSize="18sp"
+            android:layout_gravity="center"
+            android:layout_marginTop="10dp"/>
+
         <EditText
+            android:id="@+id/edt_color"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Tên sản phẩm"
+            android:hint="@string/color"
             android:layout_marginHorizontal="20dp"
             android:layout_marginTop="10dp"/>
 
         <EditText
+            android:id="@+id/edt_size"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Giá nhập"
+            android:hint="@string/size"
             android:layout_marginHorizontal="20dp"
             android:layout_marginTop="10dp"/>
 
         <EditText
+            android:id="@+id/edt_numItems"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Giá bán"
+            android:hint="@string/num"
             android:layout_marginHorizontal="20dp"
             android:layout_marginTop="10dp"/>
 
         <EditText
+            android:id="@+id/edt_sale"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Thời gian"
-            android:layout_marginHorizontal="20dp"
-            android:layout_marginTop="10dp"/>
-
-        <EditText
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Số lượng"
-            android:layout_marginHorizontal="20dp"
-            android:layout_marginTop="10dp"/>
-
-        <EditText
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Khuyến mãi"
-            android:layout_marginHorizontal="20dp"
-            android:layout_marginTop="10dp"/>
-
-        <EditText
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="Còn hàng"
+            android:hint="@string/sale"
             android:layout_marginHorizontal="20dp"
             android:layout_marginTop="10dp"/>
 
         <Button
+            android:id="@+id/btn_update"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="20dp"

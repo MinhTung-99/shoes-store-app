@@ -43,10 +43,11 @@ public class ShoesAdapter extends RecyclerView.Adapter<ShoesAdapter.ShoesViewHol
     @SuppressLint("SetTextI18n")
     @Override
     public void onBindViewHolder(@NonNull ShoesViewHolder holder, int position) {
-        holder.binding.txtName.setText(shoes.get(position).getProductName());
-        holder.binding.txtDate.setText(shoes.get(position).getUpdateTime());
-        holder.binding.txtPrice.setText(String.valueOf(shoes.get(position).getPrice()));
         holder.binding.txtSize.setText("Size:" + shoes.get(position).getSize());
+        holder.binding.txtName.setText(shoes.get(position).getProductName());
+        holder.binding.txtColor.setText(shoes.get(position).getColor());
+        holder.binding.txtQuality.setText("Số lượng:" + shoes.get(position).getNumItems());
+        holder.binding.txtSale.setText("Khuyến mại:" + shoes.get(position).getSale());
     }
 
     @Override

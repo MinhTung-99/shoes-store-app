@@ -3,6 +3,7 @@ package com.shoes_store_app.view.main;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -99,7 +100,7 @@ public class HomeFragment extends BaseFragment {
                     intent.putExtra(Constant.POSITION, position);
                     startActivity(intent);
                 } else if (getActivity() instanceof AdminActivity) {
-                    ((AdminActivity) getActivity()).getNavigator().push(new HomeUpdateFragment());
+                    ((AdminActivity) getActivity()).getNavigator().push(new HomeUpdateFragment(position, () -> callApiGetProduct()));
                 }
             }
 
@@ -150,4 +151,8 @@ public class HomeFragment extends BaseFragment {
     ActivityResultLauncher<Intent> activityResult = registerForActivityResult(
             new ActivityResultContracts.StartActivityForResult(),
             result -> callApiGetProduct());
+
+    public interface HomeCallback {
+        void callback();
+    }
 }

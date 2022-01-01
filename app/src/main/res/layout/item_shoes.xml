@@ -22,15 +22,14 @@
             android:id="@+id/txt_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Gìay"
+            android:text="name"
             android:layout_gravity="center"/>
 
         <TextView
-            android:id="@+id/txt_price"
+            android:id="@+id/txt_color"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="399000 VND"
-            android:textColor="@color/red_FF0000"
+            android:text="name"
             android:layout_gravity="center"/>
 
         <TextView
@@ -38,14 +37,20 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="399000 VND"
-            android:textColor="@color/red_FF0000"
             android:layout_gravity="center"/>
 
         <TextView
-            android:id="@+id/txt_date"
+            android:id="@+id/txt_quality"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="10/10/2021"
+            android:text="SL"
+            android:layout_gravity="center"/>
+
+        <TextView
+            android:id="@+id/txt_sale"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/sale"
             android:layout_gravity="center"/>
     </LinearLayout>
 

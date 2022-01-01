@@ -220,6 +220,30 @@ public class BaseFragment extends Fragment {
     }
     protected void onSuccessGetProductItem (List<ProductItemResponse> productResponses) {}
 
+    protected void callApiGetProductItemById (int itemId) {
+        ApiUtils.getApiService()
+                .getProductItemById(itemId)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new SingleObserver<ProductItemResponse>() {
+                    @Override
+                    public void onSubscribe(@NonNull Disposable d) {
+                        CustomProgressDialogFragment.show(((BaseActivity) getActivity()));
+                    }
+
+                    @Override
+                    public void onSuccess(@NonNull ProductItemResponse productResponse) {
+                        CustomProgressDialogFragment.hide();
+                        onSuccessGetProductItemById(productResponse);
+                    }
+
+                    @Override
+                    public void onError(@NonNull Throwable e) {
+                    }
+                });
+    }
+    protected void onSuccessGetProductItemById (ProductItemResponse productResponses) {}
+
     protected void callApiAddProductItem (ProductAddItemRequest productAddItemRequest) {
         ApiUtils.getApiService()
                 .addProductItem(productAddItemRequest)
@@ -243,6 +267,31 @@ public class BaseFragment extends Fragment {
                 });
     }
     protected void onSuccessAddProductItem () {}
+
+    protected void callApiUpdateProductItem (ProductAddItemRequest productAddItemRequest) {
+        ApiUtils.getApiService()
+                .updateProductItem(productAddItemRequest)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new SingleObserver<UserPostResponse>() {
+                    @Override
+                    public void onSubscribe(@NonNull Disposable d) {
+                        CustomProgressDialogFragment.show(((BaseActivity) getActivity()));
+                    }
+
+                    @Override
+                    public void onSuccess(@NonNull UserPostResponse productResponse) {
+                        CustomProgressDialogFragment.hide();
+                        onSuccessUpdateProductItem();
+                    }
+
+                    @Override
+                    public void onError(@NonNull Throwable e) {
+                        Log.d("KMFG", e.getLocalizedMessage());
+                    }
+                });
+    }
+    protected void onSuccessUpdateProductItem () {}
 
     protected void listenEdittextChange (EditText editText) {
         editText.addTextChangedListener(new TextWatcher() {
