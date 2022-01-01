@@ -6,4 +6,6 @@ public class Constant {
 
     public final static String EMAIL = "email";
     public final static String PASSWORD = "password";
+
+    public final static String POSITION = "position";
 }

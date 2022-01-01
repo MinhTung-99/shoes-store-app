@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:layout_marginHorizontal="20dp">
+
+        <EditText
+            android:id="@+id/edt_product_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/product"/>
+
+        <EditText
+            android:id="@+id/edt_color"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/color"/>
+
+        <EditText
+            android:id="@+id/edt_size"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/size"/>
+
+        <EditText
+            android:id="@+id/edt_numItems"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/num"/>
+
+        <EditText
+            android:id="@+id/edt_sale"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="@string/sale"/>
+
+        <Button
+            android:id="@+id/btn_add_product"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="@string/add_product"
+            android:layout_marginTop="30dp"/>
+
+    </LinearLayout>
+
+</ScrollView>

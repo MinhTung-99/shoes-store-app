@@ -1,10 +1,11 @@
 package com.shoes_store_app.network;
 
+import com.shoes_store_app.network.request.ProductAddItemRequest;
+import com.shoes_store_app.network.request.ProductAddRequest;
 import com.shoes_store_app.network.request.UserRequest;
 import com.shoes_store_app.network.request.UserUpdateRequest;
 import com.shoes_store_app.network.response.ProductItemResponse;
 import com.shoes_store_app.network.response.ProductResponse;
-import com.shoes_store_app.network.response.TestResponse;
 import com.shoes_store_app.network.response.UserPostResponse;
 import com.shoes_store_app.network.response.UserResponse;
 
@@ -40,4 +41,10 @@ public interface ApiService {
 
     @GET("item/allitem")
     Single<List<ProductItemResponse>> getProductItem ();
+
+    @POST("product/add")
+    Single<UserPostResponse> addProduct (@Body ProductAddRequest productAddRequest);
+
+    @POST("item/add")
+    Single<UserPostResponse> addProductItem (@Body ProductAddItemRequest productAddItemRequest);
 }

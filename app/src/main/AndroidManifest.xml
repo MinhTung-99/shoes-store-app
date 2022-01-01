@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="com.shoes_store_app">
 
-    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.USE_FINGERPRINT" />
 
     <application
@@ -12,9 +12,12 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:usesCleartextTraffic="true"
         android:theme="@style/Theme.Shoesstoreapp"
+        android:usesCleartextTraffic="true"
         tools:targetApi="m">
+        <activity
+            android:name=".view.activity.HomeAddActivity"
+            android:exported="false" />
         <activity
             android:name=".view.activity.AdminActivity"
             android:exported="false" />

@@ -4,19 +4,19 @@ import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
 import android.widget.EditText;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
 import com.shoes_store_app.network.ApiUtils;
+import com.shoes_store_app.network.request.ProductAddItemRequest;
+import com.shoes_store_app.network.request.ProductAddRequest;
 import com.shoes_store_app.network.request.UserRequest;
 import com.shoes_store_app.network.request.UserUpdateRequest;
 import com.shoes_store_app.network.response.ProductItemResponse;
 import com.shoes_store_app.network.response.ProductResponse;
 import com.shoes_store_app.network.response.UserPostResponse;
 import com.shoes_store_app.network.response.UserResponse;
-import com.shoes_store_app.view.activity.MainActivity;
 
 import java.util.List;
 
@@ -172,6 +172,30 @@ public class BaseFragment extends Fragment {
     }
     protected void onSuccessGetProduct (List<ProductResponse> productResponses) {}
 
+    protected void callApiAddProduct (ProductAddRequest productAddRequest) {
+        ApiUtils.getApiService()
+                .addProduct(productAddRequest)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new SingleObserver<UserPostResponse>() {
+                    @Override
+                    public void onSubscribe(@NonNull Disposable d) {
+                        CustomProgressDialogFragment.show(((BaseActivity) getActivity()));
+                    }
+
+                    @Override
+                    public void onSuccess(@NonNull UserPostResponse productResponse) {
+                        CustomProgressDialogFragment.hide();
+                        onSuccessAddProduct();
+                    }
+
+                    @Override
+                    public void onError(@NonNull Throwable e) {
+                    }
+                });
+    }
+    protected void onSuccessAddProduct () {}
+
     protected void callApiGetProductItem () {
         ApiUtils.getApiService()
                 .getProductItem()
@@ -195,6 +219,30 @@ public class BaseFragment extends Fragment {
                 });
     }
     protected void onSuccessGetProductItem (List<ProductItemResponse> productResponses) {}
+
+    protected void callApiAddProductItem (ProductAddItemRequest productAddItemRequest) {
+        ApiUtils.getApiService()
+                .addProductItem(productAddItemRequest)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new SingleObserver<UserPostResponse>() {
+                    @Override
+                    public void onSubscribe(@NonNull Disposable d) {
+                        CustomProgressDialogFragment.show(((BaseActivity) getActivity()));
+                    }
+
+                    @Override
+                    public void onSuccess(@NonNull UserPostResponse productResponse) {
+                        CustomProgressDialogFragment.hide();
+                        onSuccessAddProductItem();
+                    }
+
+                    @Override
+                    public void onError(@NonNull Throwable e) {
+                    }
+                });
+    }
+    protected void onSuccessAddProductItem () {}
 
     protected void listenEdittextChange (EditText editText) {
         editText.addTextChangedListener(new TextWatcher() {

@@ -6,13 +6,19 @@
         <entry key="..\:/MyGit/shoes-store-app/app/src/main/res/layout/activity_admin.xml" value="0.24003623188405798" />
         <entry key="..\:/MyGit/shoes-store-app/app/src/main/res/layout/activity_authentication.xml" value="0.228125" />
         <entry key="..\:/MyGit/shoes-store-app/app/src/main/res/layout/activity_detail.xml" value="0.24003623188405798" />
+        <entry key="..\:/MyGit/shoes-store-app/app/src/main/res/layout/activity_home_add.xml" value="0.18645833333333334" />
         <entry key="..\:/MyGit/shoes-store-app/app/src/main/res/layout/activity_main.xml" value="0.2421875" />
+        <entry key="..\:/MyGit/shoes-store-app/app/src/main/res/layout/custom_dialog_fragment.xml" value="0.21614583333333334" />
         <entry key="..\:/MyGit/shoes-store-app/app/src/main/res/layout/fragent_regis.xml" value="0.2421875" />
-        <entry key="..\:/MyGit/shoes-store-app/app/src/main/res/layout/fragment_home.xml" value="0.2265625" />
+        <entry key="..\:/MyGit/shoes-store-app/app/src/main/res/layout/fragment_home.xml" value="0.264" />
+        <entry key="..\:/MyGit/shoes-store-app/app/src/main/res/layout/fragment_home_add.xml" value="0.20052083333333334" />
+        <entry key="..\:/MyGit/shoes-store-app/app/src/main/res/layout/fragment_home_add_product.xml" value="0.20052083333333334" />
+        <entry key="..\:/MyGit/shoes-store-app/app/src/main/res/layout/fragment_home_add_product_item.xml" value="0.15885416666666666" />
         <entry key="..\:/MyGit/shoes-store-app/app/src/main/res/layout/fragment_home_all.xml" value="0.24003623188405798" />
         <entry key="..\:/MyGit/shoes-store-app/app/src/main/res/layout/fragment_home_update.xml" value="0.24003623188405798" />
         <entry key="..\:/MyGit/shoes-store-app/app/src/main/res/layout/fragment_login.xml" value="0.2421875" />
         <entry key="..\:/MyGit/shoes-store-app/app/src/main/res/layout/fragment_profile.xml" value="0.2421875" />
+        <entry key="..\:/MyGit/shoes-store-app/app/src/main/res/layout/fragment_profile_all.xml" value="0.13020833333333334" />
         <entry key="..\:/MyGit/shoes-store-app/app/src/main/res/layout/fragment_profile_update.xml" value="0.24003623188405798" />
         <entry key="..\:/MyGit/shoes-store-app/app/src/main/res/layout/fragment_regis.xml" value="0.16799999999999998" />
         <entry key="..\:/MyGit/shoes-store-app/app/src/main/res/layout/item_product.xml" value="0.2421875" />

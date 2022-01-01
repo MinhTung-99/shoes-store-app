@@ -32,7 +32,7 @@ public class ShoesAdapter extends RecyclerView.Adapter<ShoesAdapter.ShoesViewHol
     public ShoesViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         ItemShoesBinding binding = ItemShoesBinding.inflate(LayoutInflater.from(parent.getContext()), parent, false);
         ShoesViewHolder viewHolder = new ShoesViewHolder(binding);
-        binding.getRoot().setOnClickListener(v -> itemOnClick.onItemSelected());
+        binding.getRoot().setOnClickListener(v -> itemOnClick.onItemSelected(viewHolder.getAdapterPosition()));
         binding.getRoot().setOnLongClickListener(v -> {
             itemOnClick.onItemLongSelected();
             return false;
@@ -40,11 +40,13 @@ public class ShoesAdapter extends RecyclerView.Adapter<ShoesAdapter.ShoesViewHol
         return viewHolder;
     }
 
+    @SuppressLint("SetTextI18n")
     @Override
     public void onBindViewHolder(@NonNull ShoesViewHolder holder, int position) {
         holder.binding.txtName.setText(shoes.get(position).getProductName());
         holder.binding.txtDate.setText(shoes.get(position).getUpdateTime());
         holder.binding.txtPrice.setText(String.valueOf(shoes.get(position).getPrice()));
+        holder.binding.txtSize.setText("Size:" + shoes.get(position).getSize());
     }
 
     @Override
@@ -68,7 +70,7 @@ public class ShoesAdapter extends RecyclerView.Adapter<ShoesAdapter.ShoesViewHol
     }
 
     public interface ItemOnClick {
-        void onItemSelected ();
+        void onItemSelected (int position);
         void onItemLongSelected ();
     }
 }

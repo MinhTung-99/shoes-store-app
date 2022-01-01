@@ -24,6 +24,15 @@
     <string name="update">update</string>
     <string name="user_name">Tên người dùng</string>
     <string name="remember_password">Nhớ mật khẩu</string>
+    <string name="todo">TODO</string>
+    <string name="product">Tên sản phẩm</string>
+    <string name="import_price">Giá nhập</string>
+    <string name="price">giá bán</string>
+    <string name="add_product">Thêm sản phẩm</string>
+    <string name="color">Màu</string>
+    <string name="size">Kích thước</string>
+    <string name="num">Số lượng</string>
+    <string name="sale">Khuyến mại</string>
     <string-array name="genders">
         <item>Nam</item>
         <item>Nữ</item>
