@@ -52,6 +52,14 @@
             android:layout_height="wrap_content"
             android:text="@string/sale"
             android:layout_gravity="center"/>
+
+        <ImageView
+            android:id="@+id/img_delete"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:src="@drawable/ic_delete"
+            android:layout_gravity="center"
+            android:layout_marginTop="10dp"/>
     </LinearLayout>
 
 </androidx.cardview.widget.CardView>

@@ -91,7 +91,7 @@ public class HomeFragment extends BaseFragment {
         binding.rvType.setAdapter(typeAdapter);
 
         shoes = new ArrayList<>();
-        shoesAdapter = new ShoesAdapter(shoes);
+        shoesAdapter = new ShoesAdapter(shoes, requireActivity());
         shoesAdapter.setItemOnClick(new ShoesAdapter.ItemOnClick() {
             @Override
             public void onItemSelected(int position) {
@@ -105,15 +105,20 @@ public class HomeFragment extends BaseFragment {
             }
 
             @Override
-            public void onItemLongSelected() {
+            public void onItemDeleteSelected(int position) {
                 if (getActivity() instanceof AdminActivity) {
                     //DELETE ITEM
-                    Toast.makeText(getContext(), "DELETE", Toast.LENGTH_SHORT).show();
+                    callApiDeleteProductItem(shoesType.get(position).getItemId());
                 }
             }
         });
         binding.rvItem.setLayoutManager(new GridLayoutManager(getActivity(), 2));
         binding.rvItem.setAdapter(shoesAdapter);
+    }
+
+    @Override
+    protected void onSuccessDeleteProductItem() {
+        callApiGetProduct();
     }
 
     @Override

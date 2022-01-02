@@ -24,6 +24,8 @@ import io.reactivex.SingleObserver;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.Disposable;
 import io.reactivex.schedulers.Schedulers;
+import okhttp3.MultipartBody;
+import okhttp3.RequestBody;
 
 public class BaseFragment extends Fragment {
 
@@ -292,6 +294,58 @@ public class BaseFragment extends Fragment {
                 });
     }
     protected void onSuccessUpdateProductItem () {}
+
+    protected void callApiDeleteProductItem (int id) {
+        ApiUtils.getApiService()
+                .deleteProductItem(id)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new SingleObserver<UserPostResponse>() {
+                    @Override
+                    public void onSubscribe(@NonNull Disposable d) {
+                        CustomProgressDialogFragment.show(((BaseActivity) getActivity()));
+                    }
+
+                    @Override
+                    public void onSuccess(@NonNull UserPostResponse productResponse) {
+                        CustomProgressDialogFragment.hide();
+                        onSuccessDeleteProductItem();
+                    }
+
+                    @Override
+                    public void onError(@NonNull Throwable e) {
+                        Log.d("KMFG", e.getLocalizedMessage());
+                    }
+                });
+    }
+    protected void onSuccessDeleteProductItem () {}
+
+    protected void callApiAddImageProductItem (int id, MultipartBody.Part body) {
+        ApiUtils.getApiService()
+                .addItemImage(id, body)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new SingleObserver<UserPostResponse>() {
+                    @Override
+                    public void onSubscribe(@NonNull Disposable d) {
+                        CustomProgressDialogFragment.show(((BaseActivity) getActivity()));
+                    }
+
+                    @Override
+                    public void onSuccess(@NonNull UserPostResponse productResponse) {
+                        CustomProgressDialogFragment.hide();
+                        onSuccessAddImageProductItem();
+                    }
+
+                    @Override
+                    public void onError(@NonNull Throwable e) {
+                        CustomProgressDialogFragment.hide();
+                        onErrImageProductItem();
+                    }
+                });
+    }
+    protected void onSuccessAddImageProductItem () {}
+    protected void onErrImageProductItem () {}
 
     protected void listenEdittextChange (EditText editText) {
         editText.addTextChangedListener(new TextWatcher() {

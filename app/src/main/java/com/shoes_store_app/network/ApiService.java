@@ -12,11 +12,14 @@ import com.shoes_store_app.network.response.UserResponse;
 import java.util.List;
 
 import io.reactivex.Single;
+import okhttp3.MultipartBody;
 import retrofit2.http.Body;
 import retrofit2.http.DELETE;
 import retrofit2.http.GET;
+import retrofit2.http.Multipart;
 import retrofit2.http.POST;
 import retrofit2.http.PUT;
+import retrofit2.http.Part;
 import retrofit2.http.Path;
 import retrofit2.http.Query;
 
@@ -39,8 +42,12 @@ public interface ApiService {
     @GET("product")
     Single<List<ProductResponse>> getProduct ();
 
-    @GET("item/allitem")
+    @GET("item")
     Single<List<ProductItemResponse>> getProductItem ();
+
+    @Multipart
+    @PUT("item/updateImg/{itemid}?file")
+    Single<UserPostResponse> addItemImage (@Path(value = "itemid") int itemid, @Part MultipartBody.Part file);
 
     @GET("item/id")
     Single<ProductItemResponse> getProductItemById (@Query(value = "itemId") int itemId);
@@ -53,4 +60,7 @@ public interface ApiService {
 
     @POST("item/add")
     Single<UserPostResponse> addProductItem (@Body ProductAddItemRequest productAddItemRequest);
+
+    @DELETE("item/delete/{id}")
+    Single<UserPostResponse> deleteProductItem (@Path(value = "id") int id);
 }
