@@ -33,6 +33,8 @@
     <string name="size">Kích thước</string>
     <string name="num">Số lượng</string>
     <string name="sale">Khuyến mại</string>
+    <string name="ok">Đã xác nhận</string>
+    <string name="confirm">Xác nhận</string>
     <string-array name="genders">
         <item>Nam</item>
         <item>Nữ</item>

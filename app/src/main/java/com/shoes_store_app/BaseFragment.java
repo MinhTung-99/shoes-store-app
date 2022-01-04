@@ -13,6 +13,7 @@ import com.shoes_store_app.network.request.ProductAddItemRequest;
 import com.shoes_store_app.network.request.ProductAddRequest;
 import com.shoes_store_app.network.request.UserRequest;
 import com.shoes_store_app.network.request.UserUpdateRequest;
+import com.shoes_store_app.network.response.OrderResponse;
 import com.shoes_store_app.network.response.ProductItemResponse;
 import com.shoes_store_app.network.response.ProductResponse;
 import com.shoes_store_app.network.response.UserPostResponse;
@@ -347,23 +348,28 @@ public class BaseFragment extends Fragment {
     protected void onSuccessAddImageProductItem () {}
     protected void onErrImageProductItem () {}
 
-    protected void listenEdittextChange (EditText editText) {
-        editText.addTextChangedListener(new TextWatcher() {
-            @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+    protected void callApiGetOrdersOk () {
+        ApiUtils.getApiService()
+                .getOrdersOk()
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new SingleObserver<List<OrderResponse>>() {
+                    @Override
+                    public void onSubscribe(@NonNull Disposable d) {
+                        CustomProgressDialogFragment.show(((BaseActivity) getActivity()));
+                    }
 
-            }
+                    @Override
+                    public void onSuccess(@NonNull List<OrderResponse> orderResponses) {
+                        CustomProgressDialogFragment.hide();
+                        onSuccessGetOrderOK(orderResponses);
+                    }
 
-            @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) {
-                onTextChange(s.toString(), editText);
-            }
-
-            @Override
-            public void afterTextChanged(Editable s) {
-
-            }
-        });
+                    @Override
+                    public void onError(@NonNull Throwable e) {
+                        CustomProgressDialogFragment.hide();
+                    }
+                });
     }
-    protected void onTextChange (String text, EditText editText) {}
+    protected void onSuccessGetOrderOK (List<OrderResponse> orderResponses) {}
 }

@@ -9,4 +9,9 @@
         android:id="@+id/menu_person"
         android:icon="@drawable/ic_person"
         android:title="@string/person"/>
+
+    <item
+        android:id="@+id/menu_order"
+        android:icon="@drawable/ic_order"
+        android:title="@string/order"/>
 </menu>

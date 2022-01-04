@@ -4,6 +4,7 @@ import com.shoes_store_app.network.request.ProductAddItemRequest;
 import com.shoes_store_app.network.request.ProductAddRequest;
 import com.shoes_store_app.network.request.UserRequest;
 import com.shoes_store_app.network.request.UserUpdateRequest;
+import com.shoes_store_app.network.response.OrderResponse;
 import com.shoes_store_app.network.response.ProductItemResponse;
 import com.shoes_store_app.network.response.ProductResponse;
 import com.shoes_store_app.network.response.UserPostResponse;
@@ -63,4 +64,7 @@ public interface ApiService {
 
     @DELETE("item/delete/{id}")
     Single<UserPostResponse> deleteProductItem (@Path(value = "id") int id);
+
+    @GET("order/process/ok")
+    Single<List<OrderResponse>> getOrdersOk ();
 }
