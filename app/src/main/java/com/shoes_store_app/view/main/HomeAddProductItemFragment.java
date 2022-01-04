@@ -23,11 +23,11 @@ public class HomeAddProductItemFragment extends BaseFragment {
 
         binding.btnAddProduct.setOnClickListener(v -> {
             ProductAddItemRequest productAddItemRequest = new ProductAddItemRequest(
-                    binding.edtProductName.getText().toString(),
-                    binding.edtColor.getText().toString(),
-                    binding.edtSize.getText().toString(),
-                    binding.edtNumItems.getText().toString(),
-                    binding.edtSale.getText().toString()
+                    binding.edtProductName.getText().toString().replace(";", ""),
+                    binding.edtColor.getText().toString().replace(";", ""),
+                    binding.edtSize.getText().toString().replace(";", ""),
+                    binding.edtNumItems.getText().toString().replace(";", ""),
+                    binding.edtSale.getText().toString().replace(";", "")
             );
 
             callApiAddProductItem(productAddItemRequest);

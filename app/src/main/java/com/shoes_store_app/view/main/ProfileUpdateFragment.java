@@ -68,8 +68,9 @@ public class ProfileUpdateFragment extends BaseFragment {
 
         binding.btnUpdate.setOnClickListener(v -> {
             UserUpdateRequest userUpdateRequest = new UserUpdateRequest(
-                    LoginFragment.getInstance().password, binding.edtFullName.getText().toString(),
-                    gender, binding.edtAddress.getText().toString()
+                    LoginFragment.getInstance().password.replace(";", ""),
+                    binding.edtFullName.getText().toString().replace(";", ""),
+                    gender, binding.edtAddress.getText().toString().replace(";", "")
             );
             callApiUpdateUser(LoginFragment.getInstance().email, userUpdateRequest);
         });

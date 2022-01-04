@@ -64,11 +64,11 @@ public class HomeUpdateFragment extends BaseFragment {
         binding.btnUpdate.setOnClickListener(v -> {
             ProductAddItemRequest productAddItemRequest = new ProductAddItemRequest(
                     HomeFragment.getInstance().shoesType.get(position).getItemId(),
-                    binding.txtProductName.getText().toString(),
-                    binding.edtColor.getText().toString(),
-                    binding.edtSize.getText().toString(),
-                    binding.edtNumItems.getText().toString(),
-                    binding.edtSale.getText().toString()
+                    binding.txtProductName.getText().toString().replace(";", ""),
+                    binding.edtColor.getText().toString().replace(";", ""),
+                    binding.edtSize.getText().toString().replace(";", ""),
+                    binding.edtNumItems.getText().toString().replace(";", ""),
+                    binding.edtSale.getText().toString().replace(";", "")
             );
             callApiUpdateProductItem(productAddItemRequest);
         });

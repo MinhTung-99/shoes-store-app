@@ -26,7 +26,7 @@ public class HomeAddProductFragment extends BaseFragment {
 
         binding.btnAddProduct.setOnClickListener(v -> {
             ProductAddRequest productAddRequest = new ProductAddRequest(
-                    binding.edtProductName.getText().toString(),
+                    binding.edtProductName.getText().toString().replace(";", ""),
                     Integer.parseInt(binding.edtImportPrice.getText().toString()),
                     Integer.parseInt(binding.edtPrice.getText().toString()),
                     LoginFragment.getInstance().userId

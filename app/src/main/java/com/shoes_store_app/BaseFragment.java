@@ -48,6 +48,7 @@ public class BaseFragment extends Fragment {
 
                     @Override
                     public void onError(@NonNull Throwable e) {
+                        CustomProgressDialogFragment.hide();
                         Log.d("KMFG", e.getLocalizedMessage());
                     }
                 });
@@ -73,6 +74,7 @@ public class BaseFragment extends Fragment {
 
                     @Override
                     public void onError(@NonNull Throwable e) {
+                        CustomProgressDialogFragment.hide();
                     }
                 });
     }
@@ -97,6 +99,7 @@ public class BaseFragment extends Fragment {
 
                     @Override
                     public void onError(@NonNull Throwable e) {
+                        CustomProgressDialogFragment.hide();
                     }
                 });
     }
@@ -121,6 +124,7 @@ public class BaseFragment extends Fragment {
 
                     @Override
                     public void onError(@NonNull Throwable e) {
+                        CustomProgressDialogFragment.hide();
                     }
                 });
     }
@@ -145,6 +149,7 @@ public class BaseFragment extends Fragment {
 
                     @Override
                     public void onError(@NonNull Throwable e) {
+                        CustomProgressDialogFragment.hide();
                     }
                 });
     }
@@ -169,6 +174,7 @@ public class BaseFragment extends Fragment {
 
                     @Override
                     public void onError(@NonNull Throwable e) {
+                        CustomProgressDialogFragment.hide();
                     }
                 });
     }
@@ -193,6 +199,7 @@ public class BaseFragment extends Fragment {
 
                     @Override
                     public void onError(@NonNull Throwable e) {
+                        CustomProgressDialogFragment.hide();
                     }
                 });
     }
@@ -217,6 +224,7 @@ public class BaseFragment extends Fragment {
 
                     @Override
                     public void onError(@NonNull Throwable e) {
+                        CustomProgressDialogFragment.hide();
                     }
                 });
     }
@@ -241,6 +249,7 @@ public class BaseFragment extends Fragment {
 
                     @Override
                     public void onError(@NonNull Throwable e) {
+                        CustomProgressDialogFragment.hide();
                     }
                 });
     }
@@ -265,6 +274,7 @@ public class BaseFragment extends Fragment {
 
                     @Override
                     public void onError(@NonNull Throwable e) {
+                        CustomProgressDialogFragment.hide();
                     }
                 });
     }
@@ -289,6 +299,7 @@ public class BaseFragment extends Fragment {
 
                     @Override
                     public void onError(@NonNull Throwable e) {
+                        CustomProgressDialogFragment.hide();
                         Log.d("KMFG", e.getLocalizedMessage());
                     }
                 });
@@ -314,6 +325,7 @@ public class BaseFragment extends Fragment {
 
                     @Override
                     public void onError(@NonNull Throwable e) {
+                        CustomProgressDialogFragment.hide();
                         Log.d("KMFG", e.getLocalizedMessage());
                     }
                 });
