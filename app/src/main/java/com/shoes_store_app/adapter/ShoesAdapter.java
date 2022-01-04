@@ -12,6 +12,7 @@ import android.view.ViewGroup;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.shoes_store_app.R;
 import com.shoes_store_app.databinding.ItemShoesBinding;
 import com.shoes_store_app.network.response.ProductItemResponse;
 import com.shoes_store_app.utils.ImageConvert;
@@ -57,6 +58,8 @@ public class ShoesAdapter extends RecyclerView.Adapter<ShoesAdapter.ShoesViewHol
 
         if (shoes.get(position).getImg() != null) {
             ImageConvert.getInstance().convertBase64ToBitmap(shoes.get(position).getImg(), holder.binding.imgShoes);
+        } else {
+            holder.binding.imgShoes.setImageResource(R.drawable.ic_shoes);
         }
 
         holder.binding.txtSize.setText("Size:" + shoes.get(position).getSize());
